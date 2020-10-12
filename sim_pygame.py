@@ -2,6 +2,7 @@ import pygame
 from sys import exit 
 import random
 
+
 pygame.init()
 WIDTH = 400
 HEIGHT = 600
@@ -25,10 +26,11 @@ lw_pos = (75, 150)
 st_pos = (200, 170)
 rw_pos = (325, 150)
 
+barca_kit_nums = [1, 18, 15, 3, 20, 8, 5, 21, 11, 7, 10]
+city_kit_nums = [31, 22, 14, 5, 2, 16, 25, 17, 20, 10, 7]
 
 
-
-player_positions = [gk_pos, lb_pos, lcb_pos, rcb_pos, rb_pos, lm_pos, cm_pos, rm_pos, rw_pos, lw_pos, st_pos]
+player_positions = [gk_pos, lb_pos, lcb_pos, rcb_pos, rb_pos, lm_pos, cm_pos, rm_pos, lw_pos, st_pos, rw_pos]
 
 
 player_positions_1 = [list(x) for x in player_positions]
@@ -61,6 +63,8 @@ def move_player_random(position):
 
     return [pos_x, pos_y]
         
+font = pygame.font.SysFont('Arial', 25)
+
 
 run = True
 while run:
@@ -72,18 +76,25 @@ while run:
     screen.blit(bg, [0, 0])
     pygame.display.flip()
 
-    # pygame.draw.circle(screen, (255,0,0), (300,125) ,5)
+
+
+    # if kit num len == 1, player_pos - 15/3
 
     #team1
     pygame.draw.circle(screen, (0,0,0), (player_positions_1[0][0], player_positions_1[0][1]), 15)
-    for position in player_positions_1[1:]:
+    screen.blit(font.render(str(barca_kit_nums[0]), True, (255,255,255)), (player_positions_1[0][0] - 15/3, player_positions_1[0][1] - 15/3))
+    for i, position in enumerate(player_positions_1[1:]):
         pygame.draw.circle(screen, (255,0,0), (position[0], position[1]), 15)
+        screen.blit(font.render(str(barca_kit_nums[i+1]), True, (255,255,255)), (position[0] - 15/2, position[1] - 15/2))
     player_positions_1[1:] = [move_player_random(position) for position in player_positions_1[1:]]
 
     #team2
     pygame.draw.circle(screen, (255,255,255), (player_positions_2[0][0], player_positions_2[0][1]), 15)
-    for position in player_positions_2[1:]:
+    screen.blit(font.render(str(city_kit_nums[0]), True, (0,0,0)), (player_positions_2[0][0] - 15/2, player_positions_2[0][1] - 15/2))
+    for i, position in enumerate(player_positions_2[1:]):
         pygame.draw.circle(screen, (0,0,255), (position[0], position[1]), 15)
+        screen.blit(font.render(str(city_kit_nums[i+1]), True, (255,255,255)), (position[0] - 15/2, position[1] - 15/2))
+
     player_positions_2[1:] = [move_player_random(position) for position in player_positions_2[1:]]
 
 
