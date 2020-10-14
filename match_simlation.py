@@ -286,11 +286,12 @@ while run:
 
         #passes
         # for key, value in barca_passes_byPlayers.items():
-        #     if elapsed_time in value[1]:
-        #         list_of_passes.append([player_positions_1_dict[key[0]], player_positions_1_dict[key[1]]])
+            # if elapsed_time in value[1]:
+                # draw_line(player_positions_1_dict[key[0]], player_positions_1_dict[key[1]])
+                # list_of_passes.append((key[0], key[1]))
         
         # for each in list_of_passes:
-        #     draw_line(each[0], each[1])
+            # draw_line(player_positions_1_dict[each[0]], player_positions_1_dict[each[1]])
 
         #show team1 goals with scorer
         for j in range(5):      #to show for 5 'game minutes'
