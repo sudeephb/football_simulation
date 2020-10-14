@@ -1,6 +1,7 @@
 import pygame
 from sys import exit 
 import random
+import time
 
 
 pygame.init()
@@ -38,7 +39,7 @@ player_positions_1 = [list(x) for x in player_positions]
 
 player_positions_2 = [[WIDTH - position[0], HEIGHT - position[1]] for position in player_positions_1]
 
-print(player_positions_2)
+# print(player_positions_2)
 
 pitch_top_left = (23,42)
 pitch_bottom_right = (377,558)
@@ -65,8 +66,12 @@ def move_player_random(position):
         
 font = pygame.font.SysFont('Arial', 25)
 
+def draw_line(p1, p2):
+    ''' draw line between player1 and player2. Pass the coordinates as arguments '''
+    pygame.draw.line(screen, (0,0,0, 0.5), p1, p2)
 
 run = True
+curr_time = 0
 while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -76,7 +81,9 @@ while run:
     screen.blit(bg, [0, 0])
     pygame.display.flip()
 
-
+    curr_time+=1
+    screen.blit(font.render(str(curr_time), True, (255,255,255)), (350, 5))
+    # time.sleep(1)
 
     # if kit num len == 1, player_pos - 15/3
 
@@ -87,6 +94,9 @@ while run:
         pygame.draw.circle(screen, (255,0,0), (position[0], position[1]), 15)
         screen.blit(font.render(str(barca_kit_nums[i+1]), True, (255,255,255)), (position[0] - 15/2, position[1] - 15/2))
     player_positions_1[1:] = [move_player_random(position) for position in player_positions_1[1:]]
+
+    #line drawing test
+    draw_line(player_positions_1[0], player_positions_1[1])
 
     #team2
     pygame.draw.circle(screen, (255,255,255), (player_positions_2[0][0], player_positions_2[0][1]), 15)
