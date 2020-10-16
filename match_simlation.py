@@ -280,8 +280,6 @@ while run:
             screen.blit(font.render(str(barca_kit_nums[i+1]), True, (255,255,255)), (position[0] - 15/2, position[1] - 15/2))
         player_positions_1[1:] = [move_player_random(position) for position in player_positions_1[1:]]
 
-        #line drawing test
-        # draw_line(player_positions_1[0], player_positions_1[1])
         
 
         #passes
